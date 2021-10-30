@@ -6,8 +6,7 @@ import Cliente from './componentes/cliente/cliente.component';
 function App() {
   return (
     <div className="App">
-      <Cliente/>
-
+      <Cliente/> 
     </div>
   );
 }

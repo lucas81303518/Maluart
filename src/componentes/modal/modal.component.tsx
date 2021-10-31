@@ -22,7 +22,6 @@ const style = {
   p: 4,
 };
 const MyModal: React.FC<ModalProps> = ({ title, isOpen, onClose, children, onSave}) => {
-
   return (
     <Modal
       open={isOpen}

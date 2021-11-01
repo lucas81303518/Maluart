@@ -12,6 +12,7 @@ import {
 import React, { useState } from "react";
 import "./produto.component.scss";
 import Modal from "../modal/modal.component";
+import { NOMEM } from "dns";
 
 interface Produto {
   descricao: string;
@@ -28,9 +29,25 @@ const MyProduto: React.FC = ({}) => {
       descricao: descricao,
       valor: valor,
     };
-    setProdutos(produtos.concat([novoProduto]));
-    setModalVisible(false);
+    const validarCampos = () => {
+      if (descricao == "") {
+        alert("Campo descrição não preenchido!!");
+        return false;
+      }
+      if (valor == "") {
+        alert("Campo valor não preenchido!!");
+        return false;
+      } else {
+        setProdutos(produtos.concat([novoProduto]));
+        setModalVisible(false);
+        setDescricao("");
+        setValor("");
+        return true;
+      }
+    };
+    validarCampos();
   };
+
   const handleDescricao = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescricao(event.target.value);
   };
@@ -40,7 +57,9 @@ const MyProduto: React.FC = ({}) => {
   return (
     <div className="produto-container">
       <div className="campos">
-        <Button onClick={() => setModalVisible(true)}>Novo Produto</Button>
+        <Button variant="outlined" onClick={() => setModalVisible(true)}>
+          Novo Produto
+        </Button>
         <Modal
           isOpen={modalVisible}
           onClose={() => {

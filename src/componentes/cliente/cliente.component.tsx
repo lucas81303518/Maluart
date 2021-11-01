@@ -12,6 +12,7 @@ import {
 import React, { useState } from "react";
 import "./cliente.component.scss";
 import Modal from "../modal/modal.component";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Pessoa {
   nome: string;
@@ -38,8 +39,23 @@ const MyCliente: React.FC = ({}) => {
       cep: cep,
       instagram: instagram,
     };
-    setPessoas(pessoas.concat([novaPessoa]));
-    setModalVisible(false);
+    const validarCampos = () => {
+      if (nome == "") {
+        alert("Campo nome não preenchido!!");
+        return false;
+      }
+      if (celular == "") {
+        alert("Campo celular não preenchido!!");
+        return false;
+      } else {
+        setPessoas(pessoas.concat([novaPessoa]));
+        setModalVisible(false);
+        setNome("");
+        setCelular("");
+        return true;
+      }
+    };
+    validarCampos();
   };
   const handleNome = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNome(event.target.value);
@@ -59,7 +75,8 @@ const MyCliente: React.FC = ({}) => {
   return (
     <div className="cliente-container">
       <div className="campos">
-        <Button onClick={() => setModalVisible(true)}>Novo Cliente</Button>
+        <Button id = "novo-cliente" variant = "outlined" onClick={() => setModalVisible(true)}>Novo Cliente</Button>
+       
         <Modal
           isOpen={modalVisible}
           onClose={() => {
@@ -81,10 +98,10 @@ const MyCliente: React.FC = ({}) => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  <b>Nome</b>
+                  <b>Nome*</b>
                 </TableCell>
                 <TableCell>
-                  <b>Celular</b>
+                  <b>Celular*</b>
                 </TableCell>
                 <TableCell>
                   <b>Rua</b>

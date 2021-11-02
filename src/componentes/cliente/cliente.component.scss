@@ -1,15 +1,9 @@
 .cliente-container {
-flex-direction: column;
+  flex-direction: column;
   display: flex;
   gap: 20px;
   align-items: center;
-
-  .campos {
-    display: flex;
-    gap: 20px;
-    button {
-      height: 40px;
-    }
+  button {
+    height: 40px;
   }
 }
-

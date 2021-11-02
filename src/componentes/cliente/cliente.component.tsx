@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import "./cliente.component.scss";
 import Modal from "../modal/modal.component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FiUserPlus } from "react-icons/fi";
 
 interface Pessoa {
   nome: string;
@@ -44,8 +45,8 @@ const MyCliente: React.FC = ({}) => {
         alert("Campo nome não preenchido!!");
         return false;
       }
-      if (celular == "") {
-        alert("Campo celular não preenchido!!");
+      if (celular == "" || celular.length < 11) {
+        alert("Campo celular inválido!!");
         return false;
       } else {
         setPessoas(pessoas.concat([novaPessoa]));
@@ -59,8 +60,8 @@ const MyCliente: React.FC = ({}) => {
   };
   const handleNome = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNome(event.target.value);
-
-  }; const handleCelular = (event: React.ChangeEvent<HTMLInputElement>) => {
+  };
+  const handleCelular = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCelular(event.target.value);
   };
   const handleRua = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,8 +76,17 @@ const MyCliente: React.FC = ({}) => {
   return (
     <div className="cliente-container">
       <div className="campos">
-        <Button id = "novo-cliente" variant = "outlined" onClick={() => setModalVisible(true)}>Novo Cliente</Button>
-       
+        <Button
+          id="novo-cliente"
+          variant="outlined"
+          onClick={() => setModalVisible(true)}
+        >
+          <h3>
+            <FiUserPlus />
+            Novo Cliente
+          </h3>
+        </Button>
+
         <Modal
           isOpen={modalVisible}
           onClose={() => {
@@ -89,7 +99,11 @@ const MyCliente: React.FC = ({}) => {
           <TextField id="celular" label="Celular" onChange={handleCelular} />
           <TextField id="rua" label="Rua" onChange={handleRua} />
           <TextField id="cep" label="Cep" onChange={handleCep} />
-          <TextField id="instagram" label="Instagram" onChange={handleInstagram} />
+          <TextField
+            id="instagram"
+            label="Instagram"
+            onChange={handleInstagram}
+          />
         </Modal>
       </div>
       <div>
@@ -141,5 +155,5 @@ const MyCliente: React.FC = ({}) => {
       </div>
     </div>
   );
-}
+};
 export default MyCliente;

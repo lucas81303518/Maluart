@@ -13,6 +13,9 @@ import React, { useState } from "react";
 import "./produto.component.scss";
 import Modal from "../modal/modal.component";
 import { NOMEM } from "dns";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { sizeHeight } from "@material-ui/system";
 
 interface Produto {
   descricao: string;
@@ -34,7 +37,7 @@ const MyProduto: React.FC = ({}) => {
         alert("Campo descrição não preenchido!!");
         return false;
       }
-      if (valor == "") {
+      if (valor == null) {
         alert("Campo valor não preenchido!!");
         return false;
       } else {
@@ -58,7 +61,10 @@ const MyProduto: React.FC = ({}) => {
     <div className="produto-container">
       <div className="campos">
         <Button variant="outlined" onClick={() => setModalVisible(true)}>
-          Novo Produto
+          <h3>
+            <FontAwesomeIcon icon={faCartPlus}></FontAwesomeIcon>
+            Novo Produto
+          </h3>
         </Button>
         <Modal
           isOpen={modalVisible}

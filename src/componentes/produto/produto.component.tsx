@@ -32,19 +32,22 @@ const MyProduto: React.FC = ({}) => {
       descricao: descricao,
       valor: valor,
     };
+    const limparCampos = () => {
+      setDescricao("");
+      setValor("");
+    };
     const validarCampos = () => {
       if (descricao == "") {
         alert("Campo descrição não preenchido!!");
         return false;
       }
-      if (valor == null) {
+      if (valor == "") {
         alert("Campo valor não preenchido!!");
         return false;
       } else {
         setProdutos(produtos.concat([novoProduto]));
+        limparCampos();
         setModalVisible(false);
-        setDescricao("");
-        setValor("");
         return true;
       }
     };

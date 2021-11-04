@@ -40,6 +40,13 @@ const MyCliente: React.FC = ({}) => {
       cep: cep,
       instagram: instagram,
     };
+    const limparCampos = () => {
+      setNome("");
+      setCelular("");
+      setRua("");
+      setCep("");
+      setInstagram("");
+    };
     const validarCampos = () => {
       if (nome == "") {
         alert("Campo nome não preenchido!!");
@@ -50,9 +57,8 @@ const MyCliente: React.FC = ({}) => {
         return false;
       } else {
         setPessoas(pessoas.concat([novaPessoa]));
+        limparCampos();
         setModalVisible(false);
-        setNome("");
-        setCelular("");
         return true;
       }
     };
